@@ -1,8 +1,12 @@
 <?php 
 include "classes/Route.php";
-include "classes/EntityController.php";
+include "classes/Controller.php";
 
 Route::set('create', function() {
-    EntityController::CreateView("create.php");
+    Controller::CreateView("create.php");
+});
+
+Route::set('show', function() {
+    Controller::CreateView("show.php");
 });
 ?>

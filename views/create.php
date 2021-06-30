@@ -16,7 +16,6 @@
     <title>Document</title>
 </head>
 <body>
-    
     <form action="" method="POST">
         <input type="hidden" name="action" value="insert">
         <label for="name">Name</label>

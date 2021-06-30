@@ -1,14 +1,7 @@
 <?php 
 class Entity {
-    private String $name;
-    private DateTime $birthday;
-
-    function __construct($name, $birthday)
-    {
-        $this->name = $name;
-        $this->birthday = $birthday;
-    }
-
+    protected String $name;
+    protected DateTime $birthday;
     /**
      * Get the value of name
      */ 
