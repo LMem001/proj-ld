@@ -15,7 +15,8 @@
     <main id="app">
         <p>{{name}}</p>
         <p>Hai {{birth}} anni</p>
-        <p>Il per il tuo prossimo compleanno mancano {{nextBdD}} giorni</p>
+        <p v-if="nextBdD == 0">Ti sei scordato il tuo compleanno??? Auguri!!!</p>
+        <p v-else>Il per il tuo prossimo compleanno mancano {{nextBdD}} giorni</p>
     </main>
     <script>
         const app = new Vue (
@@ -46,14 +47,21 @@
                         let today = new Date();
 
                         let birthdate = new Date(this.entity[0].birthdate);
+                        let next_birthday = new Date(birthdate);
                         // check if this year's birthdate has arleady been celebrated
                         if(today.getMonth() > birthdate.getMonth()) {
-                            if(today.getDay() > birthdate.getDay()) {
-                                this.nextBdD = birthdate.getDay() - today.getDay();
-                            }
-                        } else {
-
+                            next_birthday.setFullYear(today.getFullYear() + 1);
+                        } else if(today.getMonth() < birthdate.getMonth()) {
+                            next_birthday.setFullYear(today.getFullYear());
+                        } 
+                        // happy birthday case
+                        else {
+                            this.nextBdD = 0;
+                            return 0;
                         }
+                        let remaining_days = next_birthday.getTime() - today.getTime();
+                        remaining_days = Math.floor(remaining_days / (1000 * 3600 * 24));
+                        this.nextBdD = remaining_days;
                     }
                 },
                 mounted: function()   {
