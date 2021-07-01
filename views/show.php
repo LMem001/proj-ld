@@ -1,5 +1,8 @@
 <?php 
     include_once('classes/DB.php');
+
+    $id = $_GET['id'];
+    $query_string = 'SELECT * FROM entities WHERE id =' . $_GET['id'];
 ?>
 
 <!DOCTYPE htm="en">
@@ -7,16 +10,24 @@
 <html langead>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <!-- VueJs -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <!-- VueJs -->
+    <!-- css -->
+    <link rel="stylesheet" href="css/style.php">
+    <!-- /css -->
     <title>Show</title>
 </head>
 <body>
+    <header>
+        <a href="create">index</a>
+    </header>
     <main id="app">
         <p>{{name}}</p>
         <p>Hai {{birth}} anni</p>
         <p v-if="nextBdD == 0">Ti sei scordato il tuo compleanno??? Auguri!!!</p>
-        <p v-else>Il per il tuo prossimo compleanno mancano {{nextBdD}} giorni</p>
+        <p v-else>Al tuo prossimo compleanno mancano {{nextBdD}} giorni</p>
     </main>
     <script>
         const app = new Vue (
@@ -65,7 +76,7 @@
                     }
                 },
                 mounted: function()   {
-                    this.entity = <?php print_r(json_encode(DB::query('SELECT * FROM entities WHERE id = 1'))); ?>;
+                    this.entity = <?php print_r(json_encode(DB::query($query_string))); ?>;
                     this.name = this.entity[0].name;
                     this.ageCalc();
                     this.nextBirthday();
