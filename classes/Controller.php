@@ -9,8 +9,16 @@ class Controller extends DB {
         $this->birthday = $birthday;
     }
     
-    public static function CreateView($view) {
+    public static function CreateView($view) 
+    {
         require_once("views/$view");
+    }
+
+    public static function redirect($url, $permanent = false)
+    {
+        header('Location:' . $url, true, $permanent ? 301 : 302);
+        
+        exit();
     }
 }
 ?>

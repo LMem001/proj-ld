@@ -1,9 +1,13 @@
 <?php 
     include_once('classes/DB.php');
+    include_once('classes/Controller.php');
+
     if(isset($_POST['create_entity'])) {
         $name = $_POST['name'];
         $birthday = $_POST['birthday'];
         DB::query('INSERT INTO entities VALUES (NULL, :name, :birthday)', array(':name'=>$name, ':birthday'=>$birthday));
+        
+        Controller::redirect('show', false);
     }
 ?>
 
