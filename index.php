@@ -1,5 +1,7 @@
 <?php 
     require_once( 'Routes.php' );
 
-    header('Location: views/create.php')
+    if($_GET['url'] == 'index.php') {
+      Controller::redirect('create', false);
+    }
 ?>

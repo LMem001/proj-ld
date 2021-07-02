@@ -5,84 +5,40 @@
     $query_string = 'SELECT * FROM entities WHERE id =' . $_GET['id'];
 ?>
 
-<!DOCTYPE htm="en">
-<hl>
-<html langead>
+<!DOCTYPE html>
+<html lang="en">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     <!-- VueJs -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <!-- VueJs -->
-    <!-- css -->
-    <link rel="stylesheet" href="css/style.php">
-    <!-- /css -->
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
     <title>Show</title>
 </head>
+<style>
+    <?php  include('views/css/style.css'); ?>
+</style>
 <body>
     <header>
-        <a href="create">index</a>
+        <nav>
+            <li><a href="create">Back</a></li>
+        </nav>
     </header>
     <main id="app">
-        <p>{{name}}</p>
-        <p>Hai {{birth}} anni</p>
-        <p v-if="nextBdD == 0">Ti sei scordato il tuo compleanno??? Auguri!!!</p>
-        <p v-else>Al tuo prossimo compleanno mancano {{nextBdD}} giorni</p>
+        <div class="container">
+            <div class="container__helper">
+                <p>Nome: {{name}}</p>
+                <p>Anni: {{birth}}</p>
+                <p v-if="nextBdD == 0">Non ti ricordi che giorno è oggi?</p>
+                <p v-else>Giorni al prossimo compleanno: {{nextBdD}}</p>
+            </div>
+        </div>
     </main>
-    <script>
-        const app = new Vue (
-            {
-                el:'#app',
-                data: {
-                    entity: [],
-                    name: '',
-                    birth: '',
-                    nextBdD: '',
-                },
-                methods: {
-                    ageCalc: function() {
-                        // get today's date
-                        let today = new Date();
-                        // get birthdate
-                        let birthdate = new Date(this.entity[0].birthdate);
-                        // calculate age
-                        let age = today.getFullYear() - birthdate.getFullYear();
-                        let m = today.getMonth() - birthdate.getMonth();
-                        if(m < 0 || (m == 0 && today.getDate() < birthdate.getDate())) {
-                            age--;
-                        }
-                        this.birth = age;
-                    },
-                    nextBirthday: function() {
-                        // get today's date
-                        let today = new Date();
-
-                        let birthdate = new Date(this.entity[0].birthdate);
-                        let next_birthday = new Date(birthdate);
-                        // check if this year's birthdate has arleady been celebrated
-                        if(today.getMonth() > birthdate.getMonth()) {
-                            next_birthday.setFullYear(today.getFullYear() + 1);
-                        } else if(today.getMonth() < birthdate.getMonth()) {
-                            next_birthday.setFullYear(today.getFullYear());
-                        } 
-                        // happy birthday case
-                        else {
-                            this.nextBdD = 0;
-                            return 0;
-                        }
-                        let remaining_days = next_birthday.getTime() - today.getTime();
-                        remaining_days = Math.floor(remaining_days / (1000 * 3600 * 24));
-                        this.nextBdD = remaining_days;
-                    }
-                },
-                mounted: function()   {
-                    this.entity = <?php print_r(json_encode(DB::query($query_string))); ?>;
-                    this.name = this.entity[0].name;
-                    this.ageCalc();
-                    this.nextBirthday();
-                }
-            }
-        )
-    </script>
+    <?php  include('views/script/show_script.php'); ?>
 </body>
 </html>
