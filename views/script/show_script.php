@@ -41,7 +41,7 @@ const app = new Vue (
                 // check if the birthday has arleady been celebrated or not this year
                 if(m < 0 || (m == 0 && today.getDate() < birthdate.getDate())) {
                     next_birthday.setFullYear(today.getFullYear());
-                } else if(m > 0 || (m == 0 && today.getDate() < birthdate.getDate())) {
+                } else if(m > 0 || (m == 0 && today.getDate() > birthdate.getDate())) {
                     next_birthday.setFullYear(today.getFullYear() + 1);
                 } else if(m == 0 && today.getDate() == birthdate.getDate()) {
                     this.nextBdD = 0;
@@ -49,7 +49,8 @@ const app = new Vue (
                 }
 
                 let remaining_days = next_birthday.getTime() - today.getTime();
-                remaining_days = Math.floor(remaining_days / (1000 * 3600 * 24));
+                remaining_days = Math.ceil(remaining_days / (1000 * 3600 * 24));
+
                 this.nextBdD = remaining_days;
             }
         },

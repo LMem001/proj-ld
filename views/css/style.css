@@ -30,7 +30,11 @@ a {
 }
 
 .container__helper {
-    width: 25%;
+    padding: 40px 20px;
+    width: 30%;
+    border: 0;
+    border-radius: 27.5px;
+    box-shadow: 0 10px 40px 0 #47478096, 0 2px 9px 0 #24245662;
 }
 
 .container__helper div {
@@ -39,7 +43,7 @@ a {
 
 .container__helper label {
     display: inline-block;
-    width: 70px;
+    width: 100px;
 }
 /* container end */
 /* form */
@@ -55,7 +59,7 @@ a {
 
 .btn {
     background-color: #fd332c;
-    padding: 5px 10px;
+    padding: 10px 20px;
     border-radius: 10px;
     border: none;
     color: #fff;
@@ -67,5 +71,9 @@ a {
 /* show's paragraphs */
 p {
     padding: 20px;
+}
+
+p span {
+    font-weight: 600;
 }
 /* show's paragraphs */

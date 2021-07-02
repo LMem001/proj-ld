@@ -16,7 +16,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,600&display=swap" rel="stylesheet">
     <!-- Google Fonts -->
     <title>Show</title>
 </head>
@@ -32,10 +32,10 @@
     <main id="app">
         <div class="container">
             <div class="container__helper">
-                <p>Nome: {{name}}</p>
-                <p>Anni: {{birth}}</p>
+                <p><span>Nome:</span> {{name}}</p>
+                <p><span>Anni:</span> {{birth}}</p>
                 <p v-if="nextBdD == 0">Non ti ricordi che giorno è oggi?</p>
-                <p v-else>Giorni al prossimo compleanno: {{nextBdD}}</p>
+                <p v-else><span>Giorni al prossimo compleanno:</span> {{nextBdD}}</p>
             </div>
         </div>
     </main>
