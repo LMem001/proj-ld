@@ -39,6 +39,6 @@
             </div>
         </div>
     </main>
-    <?php  include('views/script/show_script.php'); ?>
+    <?php  include('views/js/show_script.php'); ?>
 </body>
 </html>
